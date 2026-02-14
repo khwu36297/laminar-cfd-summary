@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laminar CFD Consulting - Strategic Business Summary</title>
+    <style>
+        /* --- CORE VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #020c1b;
+            --bg-card: #112240;
+            --accent-cyan: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --text-white: #e6f1ff;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-tech: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Background Grid Pattern */
+            background-image: 
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            color: var(--text-white);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -1px; }
+        h2 { font-size: 2rem; position: relative; padding-bottom: 10px; display: inline-block; }
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+        
+        .tech-font { font-family: var(--font-tech); color: var(--accent-cyan); font-size: 0.9rem; }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            background: radial-gradient(circle at center, rgba(17, 34, 64, 0.8) 0%, rgba(2, 12, 27, 0) 70%);
+        }
+
+        header h1 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- SECTION 1: THE GAP --- */
+        .gap-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            border-color: var(--accent-cyan);
+        }
+
+        .problem { border-left: 4px solid #ff5f5f; }
+        .solution { border-left: 4px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(100, 255, 218, 0.05); }
+
+        /* --- SECTION 2: DIFFERENTIATION --- */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pillar {
+            background: rgba(17, 34, 64, 0.6);
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- SECTION 3: BUSINESS MODEL --- */
+        .model-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .revenue-block {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #0d1b33 100%);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            min-width: 200px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .financials {
+            margin-top: 2rem;
+            background: rgba(100, 255, 218, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        /* --- SECTION 4: ROADMAP --- */
+        .roadmap {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            z-index: 0;
+        }
+
+        .phases {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phase-node {
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-cyan);
+            padding: 1.5rem;
+            width: 30%;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+        }
+
+        /* --- SECTION 5: COMPETITIVE --- */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .comp-table th, .comp-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .comp-table th {
+            color: var(--accent-cyan);
+            font-family: var(--font-tech);
+        }
+
+        .highlight {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        /* --- SECTION 6: CONTACT (NEW) --- */
+        .contact-container {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            text-align: center;
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-family: var(--font-tech);
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+        }
+
+        .linkedin-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* --- VISION --- */
+        .vision-box {
+            text-align: center;
+            padding: 4rem;
+            background: linear-gradient(rgba(17, 34, 64, 0.9), rgba(17, 34, 64, 0.9));
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.15);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-white);
+        }
+
+        /* --- ANIMATION --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .gap-container { grid-template-columns: 1fr; }
+            .roadmap::before { display: none; }
+            .phases { flex-direction: column; gap: 2rem; }
+            .phase-node { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <p class="tech-font">STRATEGIC SUMMARY // CONFIDENTIAL</p>
+            <h1>Laminar CFD Consulting</h1>
+            <p class="tagline">Thailand’s Independent CFD Validation Authority</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section style="animation-delay: 0.2s;">
+            <h2>01. The Simulation Confidence Gap</h2>
+            <div class="gap-container">
+                <div class="card problem">
+                    <h3>❌ Visually Convincing</h3>
+                    <p><strong>The Industry Norm:</strong> Most engineering simulations look good but lack verification.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.2rem; color: var(--text-secondary);">
+                        <li>Conservative overdesign costs money</li>
+                        <li>"Black Box" uncertainty</li>
+                        <li>Costly prototype iterations</li>
+                    </ul>
+                </div>
+                <div class="card solution">
+                    <h3>✅ Physically Validated</h3>
+                    <p><strong>The Laminar Approach:</strong> We bridge the gap with defensible, physics-grounded data.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.2rem; color: var(--text-white);">
+                        <li><strong>V&V First</strong> Methodology</li>
+                        <li>Mesh Independence Studies</li>
+                        <li>Quantified Uncertainty</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section style="animation-delay: 0.4s;">
+            <h2>02. Core Differentiation</h2>
+            <div class="pillars-grid">
+                <div class="pillar">
+                    <span class="icon">📐</span>
+                    <h3>Verification First</h3>
+                    <p>No "trust me" engineering. Every project includes sensitivity analysis and documented modeling assumptions.</p>
+                </div>
+                <div class="pillar">
+                    <span class="icon">🌊</span>
+                    <h3>Laminar Focus</h3>
+                    <p>Specialized in controlled, low-Reynolds flows: Electronics cooling, microfluidics, and precision industrial systems.</p>
+                </div>
+                <div class="pillar">
+                    <span class="icon">🖥️</span>
+                    <h3>LBM Solver</h3>
+                    <p>Proprietary <strong>Lattice Boltzmann Method</strong> solver development for cost efficiency and IP control.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="animation-delay: 0.6s;">
+            <h2>03. Business Model</h2>
+            <p style="margin-bottom: 1.5rem;">Capital-light, high-margin consultancy driven by specialization.</p>
+            <div class="model-grid">
+                <div class="revenue-block">Project Consulting</div>
+                <div class="revenue-block">Independent CFD Audit</div>
+                <div class="revenue-block">Retainer Advisory</div>
+                <div class="revenue-block">Custom Solver Dev</div>
+            </div>
+            <div class="financials">
+                <p class="tech-font">>> PROJECTED TRAJECTORY</p>
+                <div style="display: flex; justify-content: space-between; margin-top: 1rem; flex-wrap: wrap;">
+                    <div><strong>Year 1:</strong> Foundation</div>
+                    <div><strong>Year 2:</strong> Vertical Focus</div>
+                    <div style="color: var(--accent-cyan);"><strong>Year 3:</strong> >65% Gross Margin</div>
+                </div>
+            </div>
+        </section>
+
+        <section style="animation-delay: 0.8s;">
+            <h2>04. 24-Month Roadmap</h2>
+            <div class="roadmap">
+                <div class="phases">
+                    <div class="phase-node">
+                        <p class="tech-font">PHASE 1 (M 1-8)</p>
+                        <h3>Credibility</h3>
+                        <p>Publish benchmarks. Close reference projects. Standardize reporting.</p>
+                    </div>
+                    <div class="phase-node">
+                        <p class="tech-font">PHASE 2 (M 9-16)</p>
+                        <h3>Specialization</h3>
+                        <p>Lock vertical niche (e.g. Microfluidics). Increase pricing tier.</p>
+                    </div>
+                    <div class="phase-node">
+                        <p class="tech-font">PHASE 3 (M 17-24)</p>
+                        <h3>Evolution</h3>
+                        <p>Option: Premium Micro-Consultancy OR Niche SaaS Productization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="animation-delay: 1s;">
+            <h2>05. Competitive Position</h2>
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th>Entity Type</th>
+                        <th>Physics Validation</th>
+                        <th>Agility / Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Software Vendors (ANSYS/COMSOL)</td>
+                        <td>Low (Tool only)</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td>Certification Firms (TÜV SÜD)</td>
+                        <td>Med (Regulatory focus)</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>LAMINAR CFD CONSULTING</td>
+                        <td>High (Physics focus)</td>
+                        <td>High (Custom Solver)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section style="animation-delay: 1.2s;">
+            <h2>06. Contact & Leadership</h2>
+            <div class="contact-container">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Connect directly with founder for technical consultation.</p>
+                
+                <a href="https://www.linkedin.com/in/sorasak-laopraphaiphan-7655a9210" target="_blank" class="linkedin-btn">
+                    <span style="font-size: 1.5rem;">[IN]</span> 
+                    <span>Sorasak Laopraphaiphan</span>
+                </a>
+            </div>
+        </section>
+
+        <section style="animation-delay: 1.4s; margin-bottom: 4rem;">
+            <div class="vision-box">
+                <h3 style="color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-bottom: 1rem;">The Vision</h3>
+                <p class="vision-text">"To become Thailand’s Independent CFD Validation Authority and build a long-term, technically defensible engineering brand grounded in physics integrity."</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.8rem; border-top: 1px solid rgba(100, 255, 218, 0.1);">
+        &copy; 2024 Laminar CFD Consulting. All Rights Reserved. <br>
+        <span class="tech-font">System Status: NOMINAL // REYNOLDS NUMBER: LOW</span>
+    </footer>
+
+</body>
+</html>
