@@ -5,85 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laminar CFD Consulting - Strategic Business Summary</title>
     <style>
-        /* --- CORE VARIABLES (THEME CONFIG) --- */
+        /* --- CORE VARIABLES & RESET --- */
         :root {
-            /* Default Dark Mode */
-            --bg-body: #020c1b;
+            --bg-dark: #020c1b;
             --bg-card: #112240;
-            --bg-header: radial-gradient(circle at center, rgba(17, 34, 64, 0.9) 0%, rgba(2, 12, 27, 0.9) 70%);
-            --accent-main: #64ffda;
-            --text-main: #ccd6f6;
-            --text-muted: #8892b0;
-            --text-heading: #e6f1ff;
-            --border-color: rgba(100, 255, 218, 0.1);
-            --shadow-card: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-            --grid-color: rgba(100, 255, 218, 0.03);
-            --toggle-bg: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Light Mode Overrides */
-        body.light-mode {
-            --bg-body: #f4f7f9;
-            --bg-card: #ffffff;
-            --bg-header: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(244, 247, 249, 0.9) 70%);
-            --accent-main: #0056b3; /* Deep Engineering Blue */
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --text-heading: #0f172a;
-            --border-color: rgba(0, 86, 179, 0.15);
-            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --grid-color: rgba(0, 0, 0, 0.03);
-            --toggle-bg: rgba(0, 0, 0, 0.05);
+            --accent-cyan: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --text-white: #e6f1ff;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-tech: 'Courier New', Courier, monospace;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
+            /* Background Grid Pattern */
             background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
-        }
-
-        /* --- THEME TOGGLE BUTTON --- */
-        .theme-switch-wrapper {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .theme-btn {
-            background: var(--toggle-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-heading);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: monospace;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .theme-btn:hover {
-            border-color: var(--accent-main);
         }
 
         /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4 {
-            color: var(--text-heading);
+            color: var(--text-white);
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -97,10 +52,11 @@
             bottom: 0;
             width: 60px;
             height: 3px;
-            background: var(--accent-main);
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
         }
         
-        .tech-font { font-family: 'Courier New', Courier, monospace; color: var(--accent-main); font-size: 0.9rem; font-weight: bold; }
+        .tech-font { font-family: var(--font-tech); color: var(--accent-cyan); font-size: 0.9rem; }
 
         /* --- LAYOUT UTILITIES --- */
         .container {
@@ -118,10 +74,9 @@
         /* --- HEADER --- */
         header {
             text-align: center;
-            padding: 5rem 0 3rem;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-header);
-            position: relative;
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            background: radial-gradient(circle at center, rgba(17, 34, 64, 0.8) 0%, rgba(2, 12, 27, 0) 70%);
         }
 
         header h1 {
@@ -130,13 +85,12 @@
         }
         
         .tagline {
-            color: var(--accent-main);
+            color: var(--accent-cyan);
             font-size: 1.2rem;
             letter-spacing: 1px;
-            font-weight: 500;
         }
 
-        /* --- CARDS & GRID --- */
+        /* --- SECTION 1: THE GAP --- */
         .gap-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -147,18 +101,20 @@
             background: var(--bg-card);
             padding: 2rem;
             border-radius: 8px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-main);
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            border-color: var(--accent-cyan);
         }
 
         .problem { border-left: 4px solid #ff5f5f; }
-        .solution { border-left: 4px solid var(--accent-main); }
+        .solution { border-left: 4px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(100, 255, 218, 0.05); }
 
+        /* --- SECTION 2: DIFFERENTIATION --- */
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -167,12 +123,11 @@
         }
 
         .pillar {
-            background: var(--bg-card);
+            background: rgba(17, 34, 64, 0.6);
             padding: 2rem;
             border-radius: 4px;
             text-align: center;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .icon {
@@ -181,7 +136,7 @@
             display: block;
         }
 
-        /* --- BUSINESS MODEL --- */
+        /* --- SECTION 3: BUSINESS MODEL --- */
         .model-grid {
             display: flex;
             flex-wrap: wrap;
@@ -190,26 +145,24 @@
         }
 
         .revenue-block {
-            background: var(--bg-card);
+            background: linear-gradient(135deg, var(--bg-card) 0%, #0d1b33 100%);
             padding: 1.5rem 2rem;
             border-radius: 4px;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(100, 255, 218, 0.2);
             min-width: 200px;
             text-align: center;
             flex: 1;
-            font-weight: 500;
         }
 
         .financials {
             margin-top: 2rem;
-            background: var(--bg-card);
+            background: rgba(100, 255, 218, 0.05);
             padding: 1.5rem;
             border-radius: 8px;
-            border-left: 3px solid var(--accent-main);
-            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-cyan);
         }
 
-        /* --- ROADMAP --- */
+        /* --- SECTION 4: ROADMAP --- */
         .roadmap {
             position: relative;
             padding: 2rem 0;
@@ -222,9 +175,8 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-main), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
             z-index: 0;
-            opacity: 0.5;
         }
 
         .phases {
@@ -235,16 +187,16 @@
         }
 
         .phase-node {
-            background: var(--bg-body);
-            border: 2px solid var(--accent-main);
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-cyan);
             padding: 1.5rem;
             width: 30%;
             text-align: center;
             border-radius: 8px;
-            box-shadow: var(--shadow-card);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
         }
 
-        /* --- TABLE --- */
+        /* --- SECTION 5: COMPETITIVE --- */
         .comp-table {
             width: 100%;
             border-collapse: collapse;
@@ -254,32 +206,27 @@
         .comp-table th, .comp-table td {
             text-align: left;
             padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .comp-table th {
-            color: var(--accent-main);
-            font-family: 'Courier New', Courier, monospace;
+            color: var(--accent-cyan);
+            font-family: var(--font-tech);
         }
 
         .highlight {
-            color: var(--accent-main);
+            color: var(--accent-cyan);
             font-weight: bold;
-            background: rgba(100, 255, 218, 0.05); /* Slight tint fix for light mode handled by opacity */
-        }
-        
-        body.light-mode .highlight {
-             background: rgba(0, 86, 179, 0.05);
+            background: rgba(100, 255, 218, 0.05);
         }
 
-        /* --- CONTACT --- */
+        /* --- SECTION 6: CONTACT (NEW) --- */
         .contact-container {
             background: var(--bg-card);
             padding: 3rem;
             border-radius: 8px;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(100, 255, 218, 0.1);
             text-align: center;
-            box-shadow: var(--shadow-card);
         }
 
         .linkedin-btn {
@@ -289,18 +236,19 @@
             margin-top: 1.5rem;
             padding: 1rem 2.5rem;
             background: transparent;
-            border: 2px solid var(--accent-main);
-            color: var(--accent-main);
-            font-family: monospace;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-family: var(--font-tech);
             font-weight: bold;
             text-decoration: none;
             border-radius: 4px;
             transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
         }
 
         .linkedin-btn:hover {
-            background: var(--accent-main);
-            color: var(--bg-body);
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.4);
             transform: translateY(-3px);
         }
 
@@ -308,10 +256,10 @@
         .vision-box {
             text-align: center;
             padding: 4rem;
-            background: var(--bg-card);
-            border: 1px solid var(--accent-main);
+            background: linear-gradient(rgba(17, 34, 64, 0.9), rgba(17, 34, 64, 0.9));
+            border: 1px solid var(--accent-cyan);
             border-radius: 12px;
-            box-shadow: var(--shadow-card);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.15);
             max-width: 800px;
             margin: 0 auto;
         }
@@ -319,7 +267,7 @@
         .vision-text {
             font-size: 1.5rem;
             font-style: italic;
-            color: var(--text-heading);
+            color: var(--text-white);
         }
 
         /* --- ANIMATION --- */
@@ -334,17 +282,10 @@
             .roadmap::before { display: none; }
             .phases { flex-direction: column; gap: 2rem; }
             .phase-node { width: 100%; }
-            .theme-switch-wrapper { top: 10px; right: 10px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="theme-switch-wrapper">
-        <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">
-            <span id="theme-icon">☀️</span> <span id="theme-text">Light Mode</span>
-        </button>
-    </div>
 
     <header>
         <div class="container">
@@ -362,7 +303,7 @@
                 <div class="card problem">
                     <h3>❌ Visually Convincing</h3>
                     <p><strong>The Industry Norm:</strong> Most engineering simulations look good but lack verification.</p>
-                    <ul style="margin-top: 1rem; padding-left: 1.2rem; color: var(--text-muted);">
+                    <ul style="margin-top: 1rem; padding-left: 1.2rem; color: var(--text-secondary);">
                         <li>Conservative overdesign costs money</li>
                         <li>"Black Box" uncertainty</li>
                         <li>Costly prototype iterations</li>
@@ -371,7 +312,7 @@
                 <div class="card solution">
                     <h3>✅ Physically Validated</h3>
                     <p><strong>The Laminar Approach:</strong> We bridge the gap with defensible, physics-grounded data.</p>
-                    <ul style="margin-top: 1rem; padding-left: 1.2rem; color: var(--text-main);">
+                    <ul style="margin-top: 1rem; padding-left: 1.2rem; color: var(--text-white);">
                         <li><strong>V&V First</strong> Methodology</li>
                         <li>Mesh Independence Studies</li>
                         <li>Quantified Uncertainty</li>
@@ -403,7 +344,7 @@
 
         <section style="animation-delay: 0.6s;">
             <h2>03. Business Model</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Capital-light, high-margin consultancy driven by specialization.</p>
+            <p style="margin-bottom: 1.5rem;">Capital-light, high-margin consultancy driven by specialization.</p>
             <div class="model-grid">
                 <div class="revenue-block">Project Consulting</div>
                 <div class="revenue-block">Independent CFD Audit</div>
@@ -415,7 +356,7 @@
                 <div style="display: flex; justify-content: space-between; margin-top: 1rem; flex-wrap: wrap;">
                     <div><strong>Year 1:</strong> Foundation</div>
                     <div><strong>Year 2:</strong> Vertical Focus</div>
-                    <div style="color: var(--accent-main);"><strong>Year 3:</strong> >65% Gross Margin</div>
+                    <div style="color: var(--accent-cyan);"><strong>Year 3:</strong> >65% Gross Margin</div>
                 </div>
             </div>
         </section>
@@ -476,7 +417,8 @@
         <section style="animation-delay: 1.2s;">
             <h2>06. Contact & Leadership</h2>
             <div class="contact-container">
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Connect directly with founder for technical consultation.</p>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Connect directly with founder for technical consultation.</p>
+                
                 <a href="https://www.linkedin.com/in/sorasak-laopraphaiphan-7655a9210" target="_blank" class="linkedin-btn">
                     <span style="font-size: 1.5rem;">[IN]</span> 
                     <span>Sorasak Laopraphaiphan</span>
@@ -486,46 +428,17 @@
 
         <section style="animation-delay: 1.4s; margin-bottom: 4rem;">
             <div class="vision-box">
-                <h3 style="color: var(--accent-main); text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-bottom: 1rem;">The Vision</h3>
+                <h3 style="color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; margin-bottom: 1rem;">The Vision</h3>
                 <p class="vision-text">"To become Thailand’s Independent CFD Validation Authority and build a long-term, technically defensible engineering brand grounded in physics integrity."</p>
             </div>
         </section>
 
     </div>
 
-    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border-color);">
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.8rem; border-top: 1px solid rgba(100, 255, 218, 0.1);">
         &copy; 2024 Laminar CFD Consulting. All Rights Reserved. <br>
         <span class="tech-font">System Status: NOMINAL // REYNOLDS NUMBER: LOW</span>
     </footer>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
-            
-            body.classList.toggle('light-mode');
-
-            if (body.classList.contains('light-mode')) {
-                icon.textContent = '🌙';
-                text.textContent = 'Dark Mode';
-                localStorage.setItem('theme', 'light');
-            } else {
-                icon.textContent = '☀️';
-                text.textContent = 'Light Mode';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Check Local Storage on Load
-        window.onload = function() {
-            if (localStorage.getItem('theme') === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('theme-icon').textContent = '🌙';
-                document.getElementById('theme-text').textContent = 'Dark Mode';
-            }
-        };
-    </script>
 
 </body>
 </html>
